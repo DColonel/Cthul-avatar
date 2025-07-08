@@ -42,21 +42,35 @@ public class CharactorMoveController : MonoBehaviour {
                 yield return StartCoroutine(MoveTile(walkPoint));
             }
         }
+<<<<<<< HEAD
         currentTileIndex = (currentTileIndex + diceAnimation.diceResult) % MapTiles.Count;
         diceAnimation.diceResult = 0;
         diceAnimation.diceImageResult.gameObject.SetActive(false);
         diceAnimation.diceAnimation.speed = 1;
+=======
+        currentTileIndex = nextIndex;
+>>>>>>> ff50199115017e7268f377ef32e158a4fdbef21b
     }
 
     public IEnumerator MoveTile(Transform walkRoute) {
         Vector3 targetPos = walkRoute.position;
+<<<<<<< HEAD
         while (Vector3.Distance(playerObject.transform.position, targetPos) > 0.06f) {
+=======
+        while (Vector3.Distance(playerObject.transform.position, targetPos) > 0.05f) {
+>>>>>>> ff50199115017e7268f377ef32e158a4fdbef21b
             playerObject.transform.position = Vector3.MoveTowards(
                 playerObject.transform.position,
                 targetPos,
                 moveSpeed * Time.deltaTime
             );
             yield return null; // Ÿ‚ÌƒtƒŒ[ƒ€‚Ü‚Å‘Ò‚Â
+<<<<<<< HEAD
         }        
+=======
+        }
+        yield return new WaitForSeconds(0.3f); // ‚¿‚å‚Á‚Æ~‚Ü‚é
+        
+>>>>>>> ff50199115017e7268f377ef32e158a4fdbef21b
     }
 }

@@ -11,8 +11,13 @@ public class DiceAnimationController : MonoBehaviour
     [SerializeField] TextMeshProUGUI diceText;
     [SerializeField] GraphicRaycaster diceRaycaster;
     [SerializeField] AudioSource diceAudioSource;
+<<<<<<< HEAD
     [SerializeField] public Animator diceAnimation;
     [SerializeField] public Image diceImageResult;
+=======
+    [SerializeField] Animator diceAnimation;
+    [SerializeField] Image diceImageResult;
+>>>>>>> ff50199115017e7268f377ef32e158a4fdbef21b
 
     [SerializeField] Sprite[] diceSprites;
     [SerializeField] EventSystem eventSystem;

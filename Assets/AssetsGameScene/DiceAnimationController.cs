@@ -11,13 +11,8 @@ public class DiceAnimationController : MonoBehaviour
     [SerializeField] TextMeshProUGUI diceText;
     [SerializeField] GraphicRaycaster diceRaycaster;
     [SerializeField] AudioSource diceAudioSource;
-<<<<<<< HEAD
     [SerializeField] public Animator diceAnimation;
     [SerializeField] public Image diceImageResult;
-=======
-    [SerializeField] Animator diceAnimation;
-    [SerializeField] Image diceImageResult;
->>>>>>> ff50199115017e7268f377ef32e158a4fdbef21b
 
     [SerializeField] Sprite[] diceSprites;
     [SerializeField] EventSystem eventSystem;
@@ -32,7 +27,6 @@ public class DiceAnimationController : MonoBehaviour
     void Start()
     {
         rayCaster = new RayCaster(eventSystem);
-
     }
 
     // Update is called once per frame
@@ -41,29 +35,26 @@ public class DiceAnimationController : MonoBehaviour
         //DiceTextにマウスを合わせてたら
         var results = rayCaster.RayCastResults(diceRaycaster);
         if (results.Count > 0 && results[0].gameObject == diceText.gameObject) {
-            diceImage.SetActive(true);//DiceImageが見えるように
+            diceImage.SetActive (true);//DiceImageが見えるように
 
             if (Input.GetMouseButtonDown(0) && !diceRolled) {
+                diceRolled = true;
                 StartCoroutine(RollDice());
             }
         } else if (!diceRolled) {
             diceImage.SetActive(false);//見えないように
-
         }
     }
 
     IEnumerator RollDice() {
 
         diceAudioSource.Play();
-        diceRolled = true;
         yield return new WaitForSeconds(1.6f); // 2秒待つ
         diceResult = Random.Range(1, 7);
+        diceImageResult.gameObject.SetActive(true);
+        diceImageResult.sprite = diceSprites[diceResult - 1];
         diceAnimation.speed = 0;
 
         Debug.Log("出目は" + diceResult);
-
-        diceImageResult.gameObject.SetActive(true);
-        diceImageResult.sprite = diceSprites[diceResult - 1];
-        diceRolled = true;
     }
 }

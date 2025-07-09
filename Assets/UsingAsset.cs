@@ -1,10 +1,7 @@
 /**
  * BGM：MusMus
  *      DOVA-SYNDROME
-<<<<<<< HEAD
  * 時計:ぽぴや倉庫
-=======
->>>>>>> ff50199115017e7268f377ef32e158a4fdbef21b
  *      
  * カードのデザイン
  *      HP

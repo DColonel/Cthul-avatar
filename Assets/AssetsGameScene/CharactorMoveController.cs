@@ -6,14 +6,17 @@ public class CharactorMoveController : MonoBehaviour {
     [SerializeField] GameObject mapTileGroup;
     [SerializeField] DiceAnimationController diceAnimation;
     [SerializeField] GameObject playerObject;
+    [SerializeField] GameObject diceImageResult;
 
     float moveSpeed = 5f;
     List<GameObject> MapTiles = new List<GameObject>();
     int currentTileIndex = 0;
-    List<Transform> walkRoute = new List<Transform>();
+    int nextIndex = 0;
+    bool isMoving = false;
 
-    // Start is called before the first frame update
+    //—Ìˆæ‚Ì”‚Ìæ“¾
     void Start() {
+        //for•¶‚Å‚Ô‚ñ‰ñ‚µ‚Ä—Ìˆæ‚ğList‚ÉŠi”[
         for (int x = 0; x < mapTileGroup.transform.childCount; x++) {
             Transform mapTileChild = mapTileGroup.transform.GetChild(x);
             MapTiles.Add(mapTileChild.gameObject);
@@ -22,55 +25,40 @@ public class CharactorMoveController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (diceAnimation.diceRolled) {
-            int diceResult = diceAnimation.diceResult;
+        if (diceImageResult.activeSelf && !isMoving) {
+            StartCoroutine(MovePlayer(diceAnimation.diceResult));
             diceAnimation.diceRolled = false;
-            StartCoroutine(MovePlayer(diceResult));
         }
     }
 
     IEnumerator MovePlayer(int steps) {
-
-        walkRoute.Clear();
-        int nextIndex = 0;
-
+        isMoving = true;
         for (int i = 1; i <= steps; i++) {
-            nextIndex = (currentTileIndex + i) % MapTiles.Count;
+            int nextIndex = (currentTileIndex + i) % MapTiles.Count;
             Transform walkPoint = MapTiles[nextIndex].transform.Find("WalkPoint");
 
             if (walkPoint != null) {
                 yield return StartCoroutine(MoveTile(walkPoint));
             }
         }
-<<<<<<< HEAD
-        currentTileIndex = (currentTileIndex + diceAnimation.diceResult) % MapTiles.Count;
+        currentTileIndex = (currentTileIndex + steps) % MapTiles.Count;
+
         diceAnimation.diceResult = 0;
         diceAnimation.diceImageResult.gameObject.SetActive(false);
         diceAnimation.diceAnimation.speed = 1;
-=======
-        currentTileIndex = nextIndex;
->>>>>>> ff50199115017e7268f377ef32e158a4fdbef21b
+        isMoving = false;
     }
 
     public IEnumerator MoveTile(Transform walkRoute) {
         Vector3 targetPos = walkRoute.position;
-<<<<<<< HEAD
         while (Vector3.Distance(playerObject.transform.position, targetPos) > 0.06f) {
-=======
-        while (Vector3.Distance(playerObject.transform.position, targetPos) > 0.05f) {
->>>>>>> ff50199115017e7268f377ef32e158a4fdbef21b
             playerObject.transform.position = Vector3.MoveTowards(
                 playerObject.transform.position,
                 targetPos,
                 moveSpeed * Time.deltaTime
             );
-            yield return null; // Ÿ‚ÌƒtƒŒ[ƒ€‚Ü‚Å‘Ò‚Â
-<<<<<<< HEAD
-        }        
-=======
+            yield return null;
         }
-        yield return new WaitForSeconds(0.3f); // ‚¿‚å‚Á‚Æ~‚Ü‚é
-        
->>>>>>> ff50199115017e7268f377ef32e158a4fdbef21b
+        yield return new WaitForSeconds(0.1f);
     }
 }

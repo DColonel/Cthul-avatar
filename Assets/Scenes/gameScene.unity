@@ -3969,7 +3969,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9bee05c6cb9d3b743881671b0cb42cf8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 789123dbcf4923b44a24c8b6b491c0c9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4253,7 +4253,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 13631be90faa8294cb355b77c11b30c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d2d855dd86e52a469f0e0598f69ca49, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6107,8 +6107,8 @@ MonoBehaviour:
   sanityNum: {fileID: 219891835}
   corruptionLevelSlider: {fileID: 767873137}
   handleImage: {fileID: 1420550420}
-  warningSprite: {fileID: 21300000, guid: 3eec7a0a064b50343871b3b5b13efb87, type: 3}
-  normalSprite: {fileID: 21300000, guid: 13631be90faa8294cb355b77c11b30c0, type: 3}
+  warningSprite: {fileID: 21300000, guid: 613855587ea9da54db14f58ece0a5f97, type: 3}
+  normalSprite: {fileID: 21300000, guid: 7d2d855dd86e52a469f0e0598f69ca49, type: 3}
   player1: {fileID: 888381256}
 --- !u!4 &2019891517 stripped
 Transform:

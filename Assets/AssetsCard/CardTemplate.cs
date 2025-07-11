@@ -1,4 +1,6 @@
-public abstract class CardTemplate {
+using UnityEngine;
+
+public abstract class CardTemplate : MonoBehaviour {
 
     int HP;
     int ST;

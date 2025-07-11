@@ -42,7 +42,7 @@ public class CharactorMoveController : MonoBehaviour {
             Transform walkPoint = MapTiles[nextIndex].transform.Find("WalkPoint");
 
             if (walkPoint != null) {
-                targetPos = walkPoint.position + new Vector3(0, 0.4f, 0);
+                targetPos = walkPoint.position;
                 moveDir = (targetPos - transform.position).normalized;
 
                 // X成分の符号で回転を決める（例：右向きが180度、左向きが0度）

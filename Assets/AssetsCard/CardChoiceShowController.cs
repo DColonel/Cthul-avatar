@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardChoiceShowController : MonoBehaviour {
+public class CardChoiceShowController : GameStartEventFinishedController {
     /*==================Core===================*/
     [SerializeField] CardChoiceController cardChoice;
     [SerializeField] SummonCreatureController summon;
@@ -24,14 +24,19 @@ public class CardChoiceShowController : MonoBehaviour {
      * カードの内容を実行する処理どうしようかねえ
      */
 
-    void Start() {
+    void OnGameStartCompleteHandler() {
+
+        player = TurnManager.Instance.CurrentPlayer;
         buttonYes.onClick.AddListener(OnClickedYes);
         buttonNo.onClick.AddListener(OnClickedNo);
     }
 
     void Update() {
 
-        player = TurnManager.Instance.CurrentPlayer;
+        if (player == null) return;
+        if (player != TurnManager.Instance.CurrentPlayer) {
+            player = TurnManager.Instance.CurrentPlayer;
+        }
 
         /*==============nullじゃない時の共通処理(大きく見せる)==============*/
         if (cardChoice.playerChoiceCardIndex != null && !checkIndex) {

@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
-public class PlayerHandController : MonoBehaviour
-{
+public class PlayerHandController : GameStartEventFinishedController {
     /*==============Core================*/
     PlayerData player;
 
-    // Update is called once per frame
-    void Update()
-    {
+    void OnGameStartCompleteHandler() {
+
         player = TurnManager.Instance.CurrentPlayer;
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+        if (player == null) return;
+        if (player != TurnManager.Instance.CurrentPlayer) {
+            player = TurnManager.Instance.CurrentPlayer;
+        }
 
         if (player.checkTurnStart && !player.checkCardDrow) {
             Draw(1);

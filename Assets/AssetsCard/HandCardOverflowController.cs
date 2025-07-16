@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class HandCardOverflowController : MonoBehaviour
+public class HandCardOverflowController : GameStartEventFinishedController
 {
     /*==============Core===============*/
     [SerializeField] CanvasGroup otherUIGroup;
@@ -11,9 +11,17 @@ public class HandCardOverflowController : MonoBehaviour
 
     PlayerData player;
 
-    void Update() {
+    void OnGameStartCompleteHandler() {
 
         player = TurnManager.Instance.CurrentPlayer;
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+        if (player != TurnManager.Instance.CurrentPlayer) {
+            player = TurnManager.Instance.CurrentPlayer;
+        }
 
         if (player.hand.Count > 7) {
             /*===========‘¼UI‚ð–³Œø‰»============*/

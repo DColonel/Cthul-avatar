@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DebugController : MonoBehaviour {
+public class DebugController : GameStartEventFinishedController {
     [SerializeField] GraphicRaycaster raycaster;
     [SerializeField] Image[] images;
 
@@ -14,15 +14,15 @@ public class DebugController : MonoBehaviour {
     List<RaycastResult> results;
     PlayerData player;
 
-    // Start is called before the first frame update
-    void Start() {
-
+    void OnGameStartCompleteHandler() {
+        player = TurnManager.Instance.CurrentPlayer;
     }
 
-    // Update is called once per frame
     void Update() {
 
-        player = TurnManager.Instance.CurrentPlayer;
+        if (player != TurnManager.Instance.CurrentPlayer){
+            player = TurnManager.Instance.CurrentPlayer;
+        }
 
         if (Input.GetMouseButtonDown(0)) {
             if (ImageClicked(images[0])) { player.sanity += 5; }

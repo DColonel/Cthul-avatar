@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharactorMoveController : MonoBehaviour {
+public class CharactorMoveController : GameStartEventFinishedController {
     [SerializeField] GameObject mapTileGroup;
     [SerializeField] DiceAnimationController diceAnimation;
     [SerializeField] GameObject playerObject;
@@ -18,19 +18,24 @@ public class CharactorMoveController : MonoBehaviour {
 
     PlayerData player;
 
-    //領域の数の取得
-    void Start() {
-        //for文でぶん回して領域をListに格納
+    /*==========マップオブジェクトからタイル数を取得===========*/
+    void OnGameStartCompleteHandler() {
+
+        player = TurnManager.Instance.CurrentPlayer;
+
         for (int x = 0; x < mapTileGroup.transform.childCount; x++) {
             Transform mapTileChild = mapTileGroup.transform.GetChild(x);
             MapTiles.Add(mapTileChild.gameObject);
         }
     }
 
-    // Update is called once per frame
+
     void Update() {
 
-        player = TurnManager.Instance.CurrentPlayer;
+        if (player == null) return;
+        if (player != TurnManager.Instance.CurrentPlayer) {
+            player = TurnManager.Instance.CurrentPlayer;
+        }
 
         if (diceImageResult.activeSelf && !isMoving) {
             StartCoroutine(MovePlayer(diceAnimation.diceResult));

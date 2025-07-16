@@ -5,8 +5,8 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DiceAnimationController : MonoBehaviour
-{
+public class DiceAnimationController : GameStartEventFinishedController {
+
     /*===============Core================*/
     [SerializeField] GameObject diceImage;
     [SerializeField] TextMeshProUGUI diceText;
@@ -26,16 +26,17 @@ public class DiceAnimationController : MonoBehaviour
     //キャラクターを動かすcontrollerに受け渡すための変数
     public int diceResult;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void OnGameStartCompleteHandler() {
+        player = TurnManager.Instance.CurrentPlayer;
         rayCaster = new RayCaster(eventSystem);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        player = TurnManager.Instance.CurrentPlayer;
+    void Update() {
+
+        if (player == null) return;
+        if (player != TurnManager.Instance.CurrentPlayer) {
+            player = TurnManager.Instance.CurrentPlayer;
+        }
 
         //DiceTextにマウスを合わせてたら
         var results = rayCaster.RayCastResults(diceRaycaster);

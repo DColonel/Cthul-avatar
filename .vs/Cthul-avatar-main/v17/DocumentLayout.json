@@ -1,7 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\250225AM\\Desktop\\unity\\Cthul-avatar-main\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\250225AM\\Downloads\\Cthul-avatar-main\\Cthul-avatar-main\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{62F1FAF4-2A73-326E-9639-DC6302B82E66}|Assembly-CSharp.csproj|c:\\users\\250225am\\downloads\\cthul-avatar-main\\cthul-avatar-main\\assets\\assetsgamescene\\maincameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{62F1FAF4-2A73-326E-9639-DC6302B82E66}|Assembly-CSharp.csproj|solutionrelative:assets\\assetsgamescene\\maincameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainCameraController.cs",
+              "DocumentMoniker": "C:\\Users\\250225AM\\Downloads\\Cthul-avatar-main\\Cthul-avatar-main\\Assets\\AssetsGameScene\\MainCameraController.cs",
+              "RelativeDocumentMoniker": "Assets\\AssetsGameScene\\MainCameraController.cs",
+              "ToolTip": "C:\\Users\\250225AM\\Downloads\\Cthul-avatar-main\\Cthul-avatar-main\\Assets\\AssetsGameScene\\MainCameraController.cs",
+              "RelativeToolTip": "Assets\\AssetsGameScene\\MainCameraController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T05:33:54.498Z",
+              "EditorCaption": ""
             }
           ]
         }

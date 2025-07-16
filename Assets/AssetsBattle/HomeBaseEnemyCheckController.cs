@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class HomeBaseEnemyCheckController : MonoBehaviour{
+public class HomeBaseEnemyCheckController : GameStartEventFinishedController {
 
     PlayerData player;
 
     HomeBaseCreatureData creatureData;
 
-    // Update is called once per frame
-    void Update(){
+    void OnGameStartCompleteHandler() {
 
         player = TurnManager.Instance.CurrentPlayer;
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+        if (player == null) return;
+        if (player != TurnManager.Instance.CurrentPlayer) {
+            player = TurnManager.Instance.CurrentPlayer;
+        }
 
         if (player.checkCharMoveEnd && !player.creatCreature) {
             creatureData = player.stayMapTile.GetComponent<HomeBaseCreatureData>();

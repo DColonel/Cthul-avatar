@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDeckManager : MonoBehaviour {
-
-    /*==============Core=============*/
     [Header("デバッグデッキ用カード")]
     [SerializeField] CardData test1;
     [SerializeField] CardData test2;
@@ -12,51 +9,36 @@ public class PlayerDeckManager : MonoBehaviour {
     [SerializeField] CardData test4;
 
     Dictionary<CardData, int> deck = new();
-    List<CardData> deckList = new();
-    PlayerData player;
 
-    void Start() {
-        // デバッグ用カード枚数を登録
-        deck[test1] = 7;
-        deck[test2] = 7;
-        deck[test3] = 8;
-        deck[test4] = 8;
+    public void CreateDeckFor(PlayerData player) {
 
-        // 山札を展開→シャッフル→ドロー
-        ConvertDictToList(deck);
-        ShuffleDeck();
+        /*===============カード登録==================*/
+        var deck = new Dictionary<CardData, int> {
+            [test1] = 7,
+            [test2] = 7,
+            [test3] = 8,
+            [test4] = 8
+        };
+
+        List<CardData> deckList = ConvertDictToList(deck);
+        ShuffleDeck(deckList);
         player.deckList = deckList;
     }
 
-    void Update() {
-
-        player = TurnManager.Instance.CurrentPlayer;
-        if(player.deckList == null) {
-            Start();
-        }
-    }
-
-        /*=========List展開=========*/
-    void ConvertDictToList(Dictionary<CardData, int> dict) {
-
-        CardData[] keys = new CardData[dict.Count];
-        dict.Keys.CopyTo(keys, 0);
-
-        for (int i = 0; i < keys.Length; i++) {
-            CardData key = keys[i];
-            int count = dict[key];
-
-            for (int j = 0; j < count; j++) {
-                deckList.Add(key);
+    List<CardData> ConvertDictToList(Dictionary<CardData, int> dict) {
+        List<CardData> result = new();
+        foreach (var pair in dict) {
+            for (int i = 0; i < pair.Value; i++) {
+                result.Add(pair.Key);
             }
         }
+        return result;
     }
 
-    /*=========山札シャッフル=========*/
-    void ShuffleDeck() {
-        for (int i = 0; i < deckList.Count; i++) {
-            int rand = Random.Range(i, deckList.Count);
-            (deckList[i], deckList[rand]) = (deckList[rand], deckList[i]);
+    void ShuffleDeck(List<CardData> deck) {
+        for (int i = 0; i < deck.Count; i++) {
+            int rand = Random.Range(i, deck.Count);
+            (deck[i], deck[rand]) = (deck[rand], deck[i]);
         }
     }
 }

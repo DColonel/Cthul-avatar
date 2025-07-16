@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class SummonCreatureController : MonoBehaviour {
+public class SummonCreatureController : GameStartEventFinishedController {
 
     PlayerData player;
     [SerializeField] CardChoiceController cardChoice;
 
-    private void Update() {
+    void OnGameStartCompleteHandler() {
 
         player = TurnManager.Instance.CurrentPlayer;
+    }
+
+    private void Update() {
+
+        if (player == null) return;
+        if (player != TurnManager.Instance.CurrentPlayer) {
+            player = TurnManager.Instance.CurrentPlayer;
+        }
     }
 
     public void summonPlayerCreature() {

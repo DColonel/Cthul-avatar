@@ -18,8 +18,10 @@ public class PlayerStatsTextController : MonoBehaviour {
     int lastSanity = -99999;
     int lastCorruptionLevel = -99999;
 
-    // Start is called before the first frame update
-    void Start() {
+
+    void OnGameStartCompleteHandler() {
+
+        player = TurnManager.Instance.CurrentPlayer;
         playerName.text = player.playerName;
         corruptionLevelSlider.minValue = 0;
         corruptionLevelSlider.maxValue = 100;
@@ -28,7 +30,9 @@ public class PlayerStatsTextController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        player = TurnManager.Instance.CurrentPlayer;
+        if (player != TurnManager.Instance.CurrentPlayer) {
+            player = TurnManager.Instance.CurrentPlayer;
+        }
 
         if (player.sanity != lastSanity) {
             sanityNum.text = player.sanity.ToString();

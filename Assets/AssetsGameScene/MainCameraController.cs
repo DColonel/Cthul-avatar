@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainCameraController : MonoBehaviour
-{
-    [SerializeField] Transform playerTransform;
-    Vector3 offset;
+public class MainCameraController : GameStartEventFinishedController {
 
-    // Start is called before the first frame update
-    void Start() {
-        offset = transform.position - playerTransform.position;
+    Vector3 offset;
+    bool isInitialized = false;
+
+    void OnGameStartCompleteHandler() {
+
+        var currentPlayer = TurnManager.Instance?.CurrentPlayer;
+        if (currentPlayer == null) { return; }
+        offset = transform.position - currentPlayer.transform.position;
+        isInitialized = true;
     }
 
-    // Update is called once per frame
     void LateUpdate() {
-        transform.position = playerTransform.position + offset;
+
+        if (!isInitialized) return;
+
+        var currentPlayer = TurnManager.Instance?.CurrentPlayer;
+        if (currentPlayer == null) return;
+
+        transform.position = currentPlayer.transform.position + offset;
     }
 }

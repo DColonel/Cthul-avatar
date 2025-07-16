@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardHandUI : MonoBehaviour {
+public class CardHandUI : GameStartEventFinishedController {
     [SerializeField] GameObject CardMoveGroup;
     [SerializeField] Image[] cardPoints;
     [SerializeField] Image[] cardHideImage;
@@ -15,10 +15,18 @@ public class CardHandUI : MonoBehaviour {
     int handCardCount;
     bool showHideImage = false;
 
+    void OnGameStartCompleteHandler() {
+
+        player = TurnManager.Instance.CurrentPlayer;
+    }
+
     // Update is called once per frame
     void Update() {
 
-        player = TurnManager.Instance.CurrentPlayer;
+        if (player == null) return;
+        if (player != TurnManager.Instance.CurrentPlayer) {
+            player = TurnManager.Instance.CurrentPlayer;
+        }
 
         if (player.checkDiceRoll && !player.checkCharMoveEnd) {
             CardMoveGroup.gameObject.SetActive(false);
